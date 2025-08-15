@@ -6,7 +6,7 @@ import lombok.Getter;
 public enum ID_Config {
 
 
-    ID("group_id"),
+    Id("group_id"),
     CONFIG("localhost:9092");
 
     private final String value;
