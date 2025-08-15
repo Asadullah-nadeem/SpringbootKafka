@@ -21,13 +21,9 @@ public class KafkaProducerService {
 
     @Transactional
     public void saveAndSend(String messageText) {
-        // Save to DB
         Message message = new Message(messageText);
         messageRepository.save(message);
-
-        // Send to Kafka
         kafkaTemplate.send(TOPIC, messageText);
-
         System.out.println("Message saved & sent: " + messageText);
     }
 }
