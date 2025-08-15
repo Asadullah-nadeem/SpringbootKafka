@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class KafkaController {
 
+    String Message = "Message sent successfully";
+
     private final KafkaProducerService kafkaProducerService;
 
     public KafkaController(KafkaProducerService kafkaProducerService) {
@@ -17,6 +19,6 @@ public class KafkaController {
     @GetMapping("/send")
     public String sendMessage(@RequestParam String message) {
         kafkaProducerService.sendMessage(message);
-        return "Message sent successfully";
+        return Message ;
     }
 }
