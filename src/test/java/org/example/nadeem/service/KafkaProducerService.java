@@ -3,7 +3,7 @@ package org.example.nadeem.service;
 import org.example.nadeem.controller.MessageRepository;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Service
 public class KafkaProducerService {
@@ -18,16 +18,10 @@ public class KafkaProducerService {
         this.kafkaTemplate = kafkaTemplate;
         this.messageRepository = messageRepository;
     }
-
-    @Transactional
-    public void saveAndSend(String messageText) {
-        // Save to DB
-        Message message = new Message(messageText);
-        messageRepository.save(message);
-
-        // Send to Kafka
-        kafkaTemplate.send(TOPIC, messageText);
-
-        System.out.println("Message saved & sent: " + messageText);
+    @GetMapping("/send")
+    public void sendMessage(String message) {
+        messageRepository.save(Message);
+        kafkaTemplate.send(TOPIC, message.getText());
+        System.out.println("Message saved successfully: " + message.getText());
     }
 }

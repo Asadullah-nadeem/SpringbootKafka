@@ -4,8 +4,6 @@ import lombok.Getter;
 
 @Getter
 public enum ID_Config {
-
-
     Id("group_id"),
     CONFIG("localhost:9092");
 
@@ -14,5 +12,4 @@ public enum ID_Config {
     ID_Config(String value) {
         this.value = value;
     }
-
 }
