@@ -1,4 +1,7 @@
 package org.example.nadeem.controller;
 
-public class MessageRepository {
+import org.example.nadeem.service.Message;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface MessageRepository extends JpaRepository<Message, Long> {
 }
