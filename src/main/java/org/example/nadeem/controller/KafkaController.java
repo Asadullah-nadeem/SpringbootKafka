@@ -1,6 +1,7 @@
 package org.example.nadeem.controller;
 
 import org.example.nadeem.service.KafkaProducerService;
+import org.example.nadeem.service.Message;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +18,9 @@ public class KafkaController {
 
     @GetMapping("/send")
     public String sendMessage(@RequestParam String message) {
-        kafkaProducerService.sendMessage(message);
-        return "Message sent successfully" ;
+        Message msg = new Message(message);
+
+        kafkaProducerService.save(msg);;
+        return "Message saved successfully"  + message ;
     }
 }
